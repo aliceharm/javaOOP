@@ -2,6 +2,16 @@ package Unit;
 public class Wizard extends Pers{
     protected int mana;
 
+    public int getMagic(){
+
+        return 0;
+    }
+
+    public int getheal(){
+
+        return 0;
+    }
+
     public Wizard(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {
         super(name, sex, hp, attack, protect, speed, stamina);
         this.mana = mana;

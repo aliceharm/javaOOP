@@ -7,6 +7,7 @@ public class Pers {
     protected int protect;
     protected int speed;
     protected int stamina;
+    
 
 public int getAttack(){
 
@@ -20,7 +21,7 @@ public int getHP(){
 
 public int getSleep(){
 
-        return 0;
+        return 5;
     }
 
 public Pers(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {

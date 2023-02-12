@@ -3,6 +3,11 @@ public class Shooter extends Pers{
     protected int look;
     protected int cartrig;
 
+    public int getLooking(){
+
+        return 0;
+    }
+
     public Shooter(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {
         super(name, sex, hp, attack, protect, speed, stamina);
 
