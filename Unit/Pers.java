@@ -1,5 +1,5 @@
 package Unit;
-public class Pers {
+public abstract class Pers {
     String name;
     boolean sex;
     int hp;
