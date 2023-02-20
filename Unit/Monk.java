@@ -1,22 +1,25 @@
 package Unit;
 
-public class Monk extends Pers{
-    protected int mana;
+public class Monk extends Withers{
 
-    public int getPray(){
 
-        return 0;
+    
+    public Monk(String name, boolean sex, int hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina, int mana) {
+        super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina, mana);
+        
     }
 
-    public int getHealing(){
+    public Monk(String name){
+        super(name, true, 20, 50, 5, 2, 5, 20, 5, 100, 20);
+        super.name = name;
+        
+    };
+    @Override
+    public void step(int a) {}
 
-        return 0;
-    }
-
-    public Monk(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {
-        super(name, sex, hp, attack, protect, speed, stamina);
-        this.mana = mana;
-        //TODO Auto-generated constructor stub
+    @Override
+    public String getInfo() {
+        return "Я Монах!";
     }
     
 }

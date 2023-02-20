@@ -1,21 +1,22 @@
 package Unit;
-public class Wizard extends Pers{
-    protected int mana;
+public class Wizard extends Withers{
 
-    public int getMagic(){
+    public Wizard(String name, boolean sex, int hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina,
+            int mana) {
+        super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina, mana);
+        
+    }
+    public Wizard(String name){
+        super(name, true, 20, 50, 5, 10, 5, 20, 5, 100, 20);
+        super.name = name;
+        
+    };
+    @Override
+    public void step(int a) {}
 
-        return 0;
+    @Override
+    public String getInfo() {
+        return "Я Волшебник!";
     }
 
-    public int getheal(){
-
-        return 0;
-    }
-
-    public Wizard(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {
-        super(name, sex, hp, attack, protect, speed, stamina);
-        this.mana = mana;
-        //TODO Auto-generated constructor stub
-    }
-    
 }

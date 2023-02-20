@@ -14,8 +14,8 @@ public abstract class Withers extends Pers {
         return 0;
     }
 
-    public Withers(String name, boolean sex, int hp, int maxhp, int attack, int protect, int speed, int stamina, int mana) {
-        super(name, sex, hp, maxhp, attack, protect, speed, stamina);
+    public Withers(String name, boolean sex, int hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina, int mana) {
+        super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina);
         this.mana = mana;
         
     }

@@ -1,19 +1,29 @@
 package Unit;
-public class Shooter extends Pers{
-    protected int look;
-    protected int cartrig;
+public class Shooter extends Strelok{
 
-    public int getLooking(){
 
-        return 0;
+    
+
+    public Shooter(String name, boolean sex, int hp,int maxhp, int attack, int x, int y, int protect, int speed, int stamina, int look, int cartrig, int unlook) {
+        super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina, look, cartrig, unlook);
+        super.name = name;
+
+        
+        
     }
+    public Shooter(String name){
+        super(name, true, 15, 50, 0, 1, 15, 10, 5, 100, 10, 22, 10);
+        super.name = name;
+        
+    };
+        
 
-    public Shooter(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {
-        super(name, sex, hp, attack, protect, speed, stamina);
-
-        this.look = look;
-        this.cartrig = cartrig;
-        //TODO Auto-generated constructor stub
+    @Override
+    public void step(int a) {}
+    
+    @Override
+    public String getInfo() {
+        return "Я Арбалетчик!";
     }
     
 }

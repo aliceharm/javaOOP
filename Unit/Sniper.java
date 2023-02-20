@@ -1,26 +1,29 @@
 package Unit;
-public class Sniper extends Pers{
+public class Sniper extends Strelok{
 
-    protected int look;
-    protected int cartrig;
-    protected int unlook;
-
-    public int getLooking(){
-
-        return 0;
-    }
-
-    public int getUnLooking(){
-
-        return 0;
-    }
-
-    public Sniper(String name, boolean sex, int hp, int attack, int protect, int speed, int stamina) {
-        super(name, sex, hp, attack, protect, speed, stamina);
-        this.look = look;
-        this.cartrig = cartrig;
-        this.unlook = unlook;
-        //TODO Auto-generated constructor stub
-    }
     
+
+
+
+    public Sniper(String name, boolean sex, int hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina, int look, int cartrig, int unlook) {
+        super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina, look, cartrig, unlook);
+
+        
+    }
+    public Sniper(String name){
+        super(name, true, 15, 50,10,1, 20, 5, 5, 100, 20, 22, 15);
+        super.name = name;
+        
+    };
+        
+        
+    @Override
+    public void step(int a) {}
+    
+
+
+    @Override
+    public String getInfo() {
+        return "Я Снайпер!";
+    }
 }
