@@ -155,6 +155,9 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
 public int getprotect() {
     return protect;
 }
+public int getMaxhp() {
+    return maxhp;
+}
 protected void getDamage(float damage) {
     hp -= damage;
     if(hp > maxhp) hp = maxhp;

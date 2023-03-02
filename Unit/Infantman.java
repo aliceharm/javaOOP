@@ -13,8 +13,7 @@ public class Infantman extends Manman{
     };
       
         
-    @Override
-    public void step(int a) {}
+  
     
 
 

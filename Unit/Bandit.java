@@ -36,8 +36,7 @@ public class Bandit extends Pers{
         
     };
 
-    @Override
-    public void step(int a) {}
+   
 
 
     @Override

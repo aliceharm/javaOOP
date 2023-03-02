@@ -11,8 +11,7 @@ public class Wizard extends Withers{
         
         
     };
-    @Override
-    public void step(int a) {}
+    
 
     @Override
     public StringBuilder getInfo() {
@@ -21,7 +20,7 @@ public class Wizard extends Withers{
                 .append("\t| HP: \t").append(Wizard.super.hp)
                 .append("\t| MaxHP: \t").append(Wizard.super.maxhp)
                 .append("\t| Magic: \t").append(Wizard.super.getmana())
-    //            .append("\t\t\t\t")
+    
                 .append("\t| X.Y: \t").append("(").append(Wizard.super.pos.x)
                 .append(",").append(Wizard.super.pos.y).append(")")
                 .append("\t State: \t").append(Wizard.super.state).append("\n");

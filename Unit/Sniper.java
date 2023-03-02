@@ -1,6 +1,5 @@
 package Unit;
 
-import java.util.ArrayList;
 
 public class Sniper extends Strelok{
 

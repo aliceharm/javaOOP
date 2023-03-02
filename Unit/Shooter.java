@@ -18,8 +18,7 @@ public class Shooter extends Strelok{
     };
         
 
-    @Override
-    public void step(int a) {}
+
     
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();

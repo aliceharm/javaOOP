@@ -14,8 +14,7 @@ public class Monk extends Withers{
         
         
     };
-    @Override
-    public void step(int a) {}
+
 
     @Override
     public StringBuilder getInfo() {

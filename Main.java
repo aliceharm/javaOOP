@@ -75,7 +75,7 @@ public class Main {
         @Override
         public int compare(Pers o1, Pers o2) {
             if (o2.getSpeed() == o1.getSpeed()) {
-                return o1.getHp() - o2.getHp();
+                return (int) ((int) o2.getHp() - o1.getHp());
             }
             return o2.getSpeed() - o1.getSpeed();
         }
