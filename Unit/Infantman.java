@@ -6,9 +6,9 @@ public class Infantman extends Manman{
         super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina);
         
     }
-    public Infantman(String name){
-        super(name, false, 30, 50, 2, 3, 10, 10, 4, 100);
-        super.name = name;
+    public Infantman(String name, int x, int y){
+        super(name, false, 30, 50, x, y, 10, 10, 4, 100);
+        
         
     };
       
@@ -19,8 +19,15 @@ public class Infantman extends Manman{
 
 
     @Override
-    public String getInfo() {
-        return "Я Копейщик!";
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Копейщик: \t").append(Infantman.super.name)
+                .append("\t| HP: \t").append(Infantman.super.hp)
+                .append("\t| MaxHP: \t").append(Infantman.super.maxhp)
+                .append("\t|\t\t")
+                .append("\t| X.Y: \t").append("(").append(Infantman.super.pos.x)
+                .append(",").append(Infantman.super.pos.y).append(")")
+                .append("\t State: \t").append(Infantman.super.state).append("\n");
     }
     
 }

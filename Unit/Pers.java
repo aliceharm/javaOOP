@@ -6,13 +6,14 @@ import java.util.Random;
 public abstract class Pers implements Interface {
     String name;
     boolean sex;
-    int hp;
+    float hp;
     int maxhp;
-    int x, y;
+    public Vector2d pos;
     protected int attack;
     protected int protect;
     protected int speed;
     protected int stamina;
+    protected String state;
     
 
 public int getAttack(){
@@ -30,17 +31,18 @@ public int getSleep(){
         return 5;
     }
 
-public Pers(String name, boolean sex, int hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina) {
+public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina) {
     this.name = name;
     this.sex = sex;
     this.hp = hp;
     this.maxhp = maxhp;
-    this.x = x;
-    this.y = y;
+    pos = new Vector2d(x, y);
+
     this.attack = attack;
     this.protect = protect;
     this.speed = speed;
     this.stamina = stamina;
+    this.state = "Stand";
     }
 
 
@@ -52,41 +54,56 @@ public Pers(String name, boolean sex, int hp, int maxhp, int x, int y, int attac
         return ClassesUnits.values()[new Random().nextInt(ClassesUnits.values().length -1)];
     }
 
+    protected int findNearest(ArrayList<Pers> teams){ //ищем ближайшего
+        double min = 100;
+        int index = 0;
+        for (int i = 0; i < teams.size(); i++) {
+            if(min > pos.getDistance(teams.get(i).pos)){
+                index = i;
+                min = pos.getDistance(teams.get(i).pos);
+            }
+        }
+        return index;
 
-    public static void createArreyUnit1(ArrayList<Pers> arrayList, ClassesUnits classesUnits){ // Для создания Команды 1 (Список, setClass())
+    }
+
+
+    public static void createArreyUnit1(ArrayList<Pers> arrayList, ClassesUnits classesUnits, int i){ // Для создания Команды 1 (Список, setClass())
         switch (classesUnits){
-            case Sniper : arrayList.add(new Sniper(setName()));
+            
+            case Sniper : arrayList.add(new Sniper(setName(), 1, i));
             break;
-            case Wizard : arrayList.add(new Wizard(setName()));
+            case Wizard : arrayList.add(new Wizard(setName(), 1, i));
             break;
-            case Monk : arrayList.add(new Wizard(setName()));
+            case Monk : arrayList.add(new Wizard(setName(), 1, i));
             break;
-            case Farmman : arrayList.add(new Farmman(setName()));
+            case Farmman : arrayList.add(new Farmman(setName(), 1, i));
             break;
-            case Shooter : arrayList.add(new Sniper(setName()));
+            case Shooter : arrayList.add(new Sniper(setName(), 1, i));
             break;
-            case Infantman : arrayList.add(new Infantman(setName()));
+            case Infantman : arrayList.add(new Infantman(setName(), 1, i));
             break;
-            case Bandit : arrayList.add(new Infantman(setName()));
+            case Bandit : arrayList.add(new Infantman(setName(), 1, i));
             break;
         }
     }
 
-    public static void createArreyUnit2(ArrayList<Pers> arrayList, ClassesUnits classesUnits){ // Для создания Команды 2 (Список, setClass())
-        switch (classesUnits){
-            case Monk : arrayList.add(new Monk(setName()));
+    public static void createArreyUnit2(ArrayList<Pers> arrayList, ClassesUnits classesUnits, int i){ // Для создания Команды 2 (Список, setClass())
+        switch (classesUnits) {
+            
+            case Monk : arrayList.add(new Monk(setName(), 10, i));
             break;
-            case Wizard : arrayList.add(new Monk(setName()));
+            case Wizard : arrayList.add(new Monk(setName(), 10, i));
             break;
-            case Farmman : arrayList.add(new Farmman(setName()));
+            case Farmman : arrayList.add(new Farmman(setName(), 10, i));
             break;
-            case Shooter : arrayList.add(new Shooter(setName()));
+            case Shooter : arrayList.add(new Shooter(setName(), 10, i));
             break;
-            case Sniper : arrayList.add(new Shooter(setName()));
+            case Sniper : arrayList.add(new Shooter(setName(), 10, i));
             break;
-            case Bandit : arrayList.add(new Bandit(setName()));
+            case Bandit : arrayList.add(new Bandit(setName(), 10, i));
             break;
-            case Infantman : arrayList.add(new Bandit(setName()));
+            case Infantman : arrayList.add(new Bandit(setName(), 10, i));
             break;
         }
     }
@@ -95,21 +112,62 @@ public Pers(String name, boolean sex, int hp, int maxhp, int x, int y, int attac
     public String toString() {
         return "name='" + name + '\'' +
                 ", hp=" + hp +
-                ", speed=" + speed ;
+                ", speed=" + speed +
+                ", x =" + pos.x +
+                ", y =" + pos.y;
     }
     
     @Override
-    public void step(int a) {}
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
+
+    }
 
     @Override
-    public String getInfo() {return "Я человек!";}
+    public StringBuilder getInfo() {
+        return null;
+    }
 
+    public static ArrayList<Pers> findLive(ArrayList<Pers> teams){
+        ArrayList<Pers> findLive = new ArrayList<>();
+        for (int i = 0; i < teams.size(); i++) {
+            if(teams.get(i).getHp() > 0){
+                findLive.add(teams.get(i));
+            }
+            else{
+                teams.get(i).state = "Die";
+            }
+        }
+        return findLive;
+    }
 
+    public void  makeDamage(Pers unit){
+        int damage = unit.getprotect() - attack;
+        float hp;
+        if(damage < 0) {
+            hp = unit.getHp() + damage;
+        } else if (damage > 0) {
+            hp = unit.getHp() - 1;
+        } else {
+            hp = unit.getHp() - ((attack+1)/2);
+        }
+        unit.setHp(hp < 0 ? 0: hp);
+}
+public int getprotect() {
+    return protect;
+}
+protected void getDamage(float damage) {
+    hp -= damage;
+    if(hp > maxhp) hp = maxhp;
+        if (hp <= 0) state = "Die";
+        }
     
     public int getSpeed() {
         return speed;
     }
-    public int getHp() {
+    public float getHp() {
         return hp;
+    }
+    public void setHp(Float hp) {
+        this.hp = hp;
     }
 }

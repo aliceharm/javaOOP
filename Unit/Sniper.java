@@ -1,4 +1,7 @@
 package Unit;
+
+import java.util.ArrayList;
+
 public class Sniper extends Strelok{
 
     
@@ -10,20 +13,28 @@ public class Sniper extends Strelok{
 
         
     }
-    public Sniper(String name){
-        super(name, true, 15, 50,10,1, 20, 5, 5, 100, 20, 22, 15);
-        super.name = name;
+    public Sniper(String name, int x, int y){
+        super(name, true, 15, 50, x, y, 20, 5, 5, 100, 20, 22, 15);
+        
         
     };
         
         
-    @Override
-    public void step(int a) {}
+   
     
 
 
     @Override
-    public String getInfo() {
-        return "Я Снайпер!";
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Снайпер: \t").append(Sniper.super.name)
+                .append("\t| HP: \t").append(Sniper.super.hp)
+                .append("\t| MaxHP: \t").append(Sniper.super.maxhp)
+                .append("\t| Arrows: \t").append(Sniper.super.getcartrig())
+                .append("\t| X.Y: \t").append("(").append(Sniper.super.pos.x)
+                .append(",").append(Sniper.super.pos.y).append(")")
+                .append("\t State: \t").append(Sniper.super.state).append("\n");
+
     }
+
 }
