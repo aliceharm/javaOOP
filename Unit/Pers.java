@@ -13,7 +13,7 @@ public abstract class Pers implements Interface {
     protected int protect;
     protected int speed;
     protected int stamina;
-    protected String state;
+    public String state;
     
 
 public int getAttack(){
@@ -108,19 +108,8 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
         }
     }
 
-    @Override
-    public String toString() {
-        return "name='" + name + '\'' +
-                ", hp=" + hp +
-                ", speed=" + speed +
-                ", x =" + pos.x +
-                ", y =" + pos.y;
-    }
-    
-    @Override
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
-
-    }
+  
+   
 
     @Override
     public StringBuilder getInfo() {
@@ -130,7 +119,7 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
     public static ArrayList<Pers> findLive(ArrayList<Pers> teams){
         ArrayList<Pers> findLive = new ArrayList<>();
         for (int i = 0; i < teams.size(); i++) {
-            if(teams.get(i).getHp() > 0){
+            if(teams.get(i).gethp() > 0){
                 findLive.add(teams.get(i));
             }
             else{
@@ -144,13 +133,13 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
         int damage = unit.getprotect() - attack;
         float hp;
         if(damage < 0) {
-            hp = unit.getHp() + damage;
+            hp = unit.gethp() + damage;
         } else if (damage > 0) {
-            hp = unit.getHp() - 1;
+            hp = unit.gethp() - 1;
         } else {
-            hp = unit.getHp() - ((attack+1)/2);
+            hp = unit.gethp() - ((attack+1)/2);
         }
-        unit.setHp(hp < 0 ? 0: hp);
+        unit.sethp(hp < 0 ? 0: hp);
 }
 public int getprotect() {
     return protect;
@@ -158,6 +147,9 @@ public int getprotect() {
 public int getMaxhp() {
     return maxhp;
 }
+
+
+
 protected void getDamage(float damage) {
     hp -= damage;
     if(hp > maxhp) hp = maxhp;
@@ -167,10 +159,26 @@ protected void getDamage(float damage) {
     public int getSpeed() {
         return speed;
     }
-    public float getHp() {
+    public float gethp() {
         return hp;
     }
-    public void setHp(Float hp) {
+    public void sethp(float hp) {
         this.hp = hp;
     }
+
+
+public int[] getCoords() { return new int[]{pos.x, pos.y};}
+@Override
+public String toString() {
+    return name + "\t" +
+            getEmoji() +
+            "\t| \uD83E\uDE78:" + Math.round(hp) +
+            "\t\uD83D\uDEE1:" + protect +
+            " \t\uD83D\uDDE1:" + attack +
+            " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) +
+            "\t\t";
+}
+public String getEmoji() {
+    return null;
+}
 }

@@ -16,6 +16,15 @@ public class Shooter extends Strelok{
         
         
     };
+    @Override
+    public String getProfession() {
+        return "Арбалет";
+    }
+    @Override
+    public String getEmoji() {
+        if(hp == 0) return "\uD83D\uDC80";
+        return "\uD83E\uDDDD\u200D♀️";
+    }
         
 
 

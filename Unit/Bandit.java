@@ -2,7 +2,7 @@ package Unit;
 
 import java.util.Random;
 
-public class Bandit extends Pers{
+public class Bandit extends Manman{
     protected int unlook;
     protected int luck;
 
@@ -35,6 +35,16 @@ public class Bandit extends Pers{
 
         
     };
+    @Override
+    public String getProfession() {
+        return "Бандит";
+    }
+
+    @Override
+    public String getEmoji() {
+        if(hp == 0) return "\uD83D\uDC80";
+        return "\uD83E\uDD77";
+    }
 
    
 

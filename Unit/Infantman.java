@@ -11,6 +11,15 @@ public class Infantman extends Manman{
         
         
     };
+    @Override
+    public String getProfession() {
+        return "Копейщик";
+    }
+    @Override
+    public String getEmoji() {
+        if(hp == 0) return "\uD83D\uDC80";
+        return "\uD83D\uDC77\u200D♂️";
+    }
       
         
   

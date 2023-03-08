@@ -2,7 +2,7 @@ package Unit;
 
 import java.util.ArrayList;
 
-public class Farmman extends Manman{
+public class Farmman extends Pers{
 
     protected int arrows;
 
@@ -24,8 +24,9 @@ public class Farmman extends Manman{
         
         
     @Override
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
-        arrows = 1;
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2, ArrayList<Barrier> barriers) {
+        if (state.equals("Die")) return;
+        if (state.equals("Empty")) state = "Stand";
     }
     public int getArrowsFarmer() {
         return arrows;
@@ -46,6 +47,16 @@ public class Farmman extends Manman{
                 .append("\t| X.Y: \t").append("(").append(Farmman.super.pos.x)
                 .append(",").append(Farmman.super.pos.y).append(")")
                 .append("\t State: \t").append(Farmman.super.state).append("\n");
+    }
+    @Override
+    public String getProfession() {
+        return "Фермер";
+    }
+
+    @Override
+    public String getEmoji() {
+        if(hp == 0) return "\uD83D\uDC80";
+        return "\uD83E\uDDD1\u200D\uD83C\uDF3E";
     }
 
 

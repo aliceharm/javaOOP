@@ -15,6 +15,16 @@ public class Monk extends Withers{
         
     };
 
+    @Override
+    public String getProfession() {
+        return "Монах";
+    }
+    @Override
+    public String getEmoji() {
+        if(hp == 0) return "\uD83D\uDC80";
+        return "\uD83E\uDDD9\u200D♂️";
+    }
+
 
     @Override
     public StringBuilder getInfo() {

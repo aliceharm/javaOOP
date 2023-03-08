@@ -26,30 +26,53 @@ public abstract class Withers extends Pers {
     public int getmana() {
         return mana;
     }
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
-        ArrayList<Pers> findLive = super.findLive(team1);
-        if(hp > 0 ) {
-            mana = ((mana += 2) > maxmana) ? maxmana : mana + 2;
-            if (mana > 9) {
-                for (Pers hero : findLive) {
-                    if (hero.getHp() < hero.getMaxhp()) {
-                        healing(hero);
-                        mana -= 10;
-                        return;
-                    }
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2, ArrayList<Barrier> barriers) {
+        if (state.equals("Die")) return;
+        if (mana > 4){
+            for (Pers human : team1) {
+                if (human.hp < human.maxhp) {
+                    healing(human);
+                    mana -= 5;
+                    return;
                 }
             }
+        } else {
+            int index = findNearest(team2);
+            if (team2.get(index).hp - 1 <= 0) {
+                team2.get(index).state = "Die";
+                team2.get(index).hp = 0;
+            } else {
+                team2.get(index).hp -= 1;
+            }
         }
-     }
+    }
  
-     protected void healing(Pers hero){
-         float newHp = hero.getHp() - attack;
-         if(newHp > hero.getMaxhp()){
-             hero.setHp((float)hero.getMaxhp()-18);
-         } else {
-             hero.setHp(newHp);
-         }
-     }
-
-
+    @Override
+    public String toString() {
+        return name + "\t" +
+                getEmoji() +
+                "\t| \uD83E\uDE78:" + Math.round(hp) +
+                "\t\uD83D\uDEE1:" + protect +
+                " \t\uD83D\uDD2E:" + attack +
+                " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) +
+                " \t\uD83D\uDCA7:" + mana + " ";
+    }
+    @Override
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder(getProfession());
+        return builder.append(":  \t").append(name)
+                .append("\t| ATK:\t").append(attack)
+                .append("\t| HP:\t").append(hp)
+                .append(" \t| MP:\t").append(mana)
+                .append("\t|")
+                .append("\t|");
+    }
+    protected void healing(Pers human) {
+        float newHp = human.gethp()-attack;
+        if (newHp > human.getMaxhp()) {
+            human.sethp(human.getMaxhp());
+        } else {
+            human.sethp(newHp);
+        }
+    }
 }

@@ -1,18 +1,24 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Random;
 import java.util.Scanner;
 
-import Unit.Bandit;
-import Unit.Farmman;
-import Unit.Infantman;
-import Unit.Monk;
+import Unit.Barrier;
 import Unit.Pers;
-import Unit.Shooter;
-import Unit.Sniper;
-import Unit.Wizard;
+import Unit.Vector2d;
+
 
 public class Main {
+    static final int UNITS = 10;
+    public static ArrayList<Barrier> barrier = new ArrayList<>();
+    public static ArrayList<Pers> teams = new ArrayList<>();
+    public static ArrayList<Pers> team1 = new ArrayList<>();
+    public static ArrayList<Pers> team2 = new ArrayList<>();
+
+    
     public static void main(String[] args) {
+        Scanner user_input = new Scanner(System.in);
+        createBarrier();
 
 
         
@@ -75,46 +81,53 @@ public class Main {
         @Override
         public int compare(Pers o1, Pers o2) {
             if (o2.getSpeed() == o1.getSpeed()) {
-                return (int) ((int) o2.getHp() - o1.getHp());
+                return (int) ((int) o2.gethp() - o1.gethp());
             }
             return o2.getSpeed() - o1.getSpeed();
         }
 
+        
 
     });
-    Scanner user_input = new Scanner(System.in);
-    String game = "";
+   
+ //   System.out.println(teams);
 
-    System.out.println("------------------Team sorted-------------");
- //   System.out.println(arreyAll);
+ ArrayList<Pers> holyLive = new ArrayList<>(team1);
+ ArrayList<Pers> darkLive = new ArrayList<>(team2);
 
 
-
-while (game == ""){
-        if(Pers.findLive(team1).size() != 0 && Pers.findLive(team2).size() != 0){
-            
-            
-            for (Pers hero : teams){
-                if(team1.contains(hero)){
-                    hero.step(Pers.findLive(team1),Pers.findLive(team2));
-           }
-                else {
-                    hero.step(Pers.findLive(team2),Pers.findLive(team1));
-                }
-
+ while (true) {
+    View.view();
+    user_input.nextLine();
+    
+    for (Pers human: teams) {
+        if (holyLive.size() != 0 && darkLive.size() != 0) {
+            if (team1.contains(human)) {
+                human.step(holyLive, darkLive, barrier);
+                darkLive = findLive(team2);
+            } else {
+                human.step(darkLive, holyLive, barrier);
+                holyLive = findLive(team1);
             }
-            game = user_input.nextLine();
+        } else {
+            View.view();
+            View.searchWinner(holyLive.size());
+            return;
         }
-        else {
-            winner(team1,team2);
-            break;
-        }
+    }
+}
 
     }
 
-
-
-    }
+    static ArrayList<Pers> findLive(ArrayList<Pers> team) {
+        ArrayList <Pers> findLive = new ArrayList<>();
+        for (Pers human : team) {
+            if (human.state.equals("Stand")|| human.state.equals("Empty")) {
+                findLive.add(human);
+            }
+        }
+        return findLive;
+    }  
 
     static void printTeam(ArrayList<Pers> teams) {
         printHeaders();
@@ -141,7 +154,16 @@ while (game == ""){
     }
 
     
-
+    
+    static void createBarrier(){
+       int rnd = new Random().nextInt( 5);
+       for (int i = 0; i < rnd; i++){
+           int x = new Random().nextInt( 8);
+           int y = new Random().nextInt( 8);
+           
+            barrier.add(new Barrier(new Vector2d(x, y)));
+       }
+   }
 
 
     
