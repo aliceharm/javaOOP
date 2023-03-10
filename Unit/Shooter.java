@@ -25,19 +25,8 @@ public class Shooter extends Strelok{
         if(hp == 0) return "\uD83D\uDC80";
         return "\uD83E\uDDDD\u200D♀️";
     }
-        
 
-
-    
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Арбалетчик:  \t").append(Shooter.super.name)
-                .append("\t| HP: \t").append(Shooter.super.hp)
-                .append("\t| MaxHP: \t").append(Shooter.super.maxhp)
-                .append("\t| Arrows: \t").append(Shooter.super.getcartrig())
-                .append("\t| X.Y: \t").append("(").append(Shooter.super.pos.x)
-                .append(",").append(Shooter.super.pos.y).append(")")
-                .append("\t State: \t").append(Shooter.super.state).append("\n");
-    }
+    public String getInfo() {
+        return "Арбалетчик";}
     
 }

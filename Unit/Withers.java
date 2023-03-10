@@ -26,7 +26,7 @@ public abstract class Withers extends Pers {
     public int getmana() {
         return mana;
     }
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2, ArrayList<Barrier> barriers) {
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
         if (state.equals("Die")) return;
         if (mana > 4){
             for (Pers human : team1) {
@@ -55,20 +55,16 @@ public abstract class Withers extends Pers {
                 "\t\uD83D\uDEE1:" + protect +
                 " \t\uD83D\uDD2E:" + attack +
                 " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) +
-                " \t\uD83D\uDCA7:" + mana + " ";
+                " \t\uD83D\uDCA7:" + mana + "  ";
     }
+
+
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder(getProfession());
-        return builder.append(":  \t").append(name)
-                .append("\t| ATK:\t").append(attack)
-                .append("\t| HP:\t").append(hp)
-                .append(" \t| MP:\t").append(mana)
-                .append("\t|")
-                .append("\t|");
+    public String getInfo() {
+        return "";
     }
     protected void healing(Pers human) {
-        float newHp = human.gethp()-attack;
+        float newHp = human.getHp()-attack;
         if (newHp > human.getMaxhp()) {
             human.sethp(human.getMaxhp());
         } else {

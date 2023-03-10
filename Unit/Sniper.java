@@ -26,24 +26,10 @@ public class Sniper extends Strelok{
         if(hp == 0) return "\uD83D\uDC80";
         return "\uD83E\uDDDD";
     }
-    
-        
-        
-   
-    
-
 
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Снайпер: \t").append(Sniper.super.name)
-                .append("\t| HP: \t").append(Sniper.super.hp)
-                .append("\t| MaxHP: \t").append(Sniper.super.maxhp)
-                .append("\t| Arrows: \t").append(Sniper.super.getcartrig())
-                .append("\t| X.Y: \t").append("(").append(Sniper.super.pos.x)
-                .append(",").append(Sniper.super.pos.y).append(")")
-                .append("\t State: \t").append(Sniper.super.state).append("\n");
-
+    public String getInfo() {
+        return "Cнайпер";
     }
 
 }

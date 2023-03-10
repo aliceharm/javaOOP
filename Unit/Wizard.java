@@ -22,16 +22,8 @@ public class Wizard extends Withers{
     }
 
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Маг: \t\t").append(Wizard.super.name)
-                .append("\t| HP: \t").append(Wizard.super.hp)
-                .append("\t| MaxHP: \t").append(Wizard.super.maxhp)
-                .append("\t| Magic: \t").append(Wizard.super.getmana())
-    
-                .append("\t| X.Y: \t").append("(").append(Wizard.super.pos.x)
-                .append(",").append(Wizard.super.pos.y).append(")")
-                .append("\t State: \t").append(Wizard.super.state).append("\n");
+    public String getInfo() {
+        return "Колдун";
     }
 
 }

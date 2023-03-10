@@ -25,17 +25,9 @@ public class Monk extends Withers{
         return "\uD83E\uDDD9\u200D♂️";
     }
 
-
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Монах:  \t").append(Monk.super.name)
-                .append("\t| HP: \t").append(Monk.super.hp)
-                .append("\t| MaxHP: \t").append(Monk.super.maxhp)
-                .append("\t| Magic: \t").append(Monk.super.getmana())
-                .append("\t| X.Y: \t").append("(").append(Monk.super.pos.x)
-                .append(",").append(Monk.super.pos.y).append(")")
-                .append("\t State: \t").append(Monk.super.state).append("\n");
+    public String getInfo() {
+        return "Монах";
     }
     
 }

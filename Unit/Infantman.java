@@ -20,22 +20,10 @@ public class Infantman extends Manman{
         if(hp == 0) return "\uD83D\uDC80";
         return "\uD83D\uDC77\u200D♂️";
     }
-      
-        
-  
-    
-
 
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Копейщик: \t").append(Infantman.super.name)
-                .append("\t| HP: \t").append(Infantman.super.hp)
-                .append("\t| MaxHP: \t").append(Infantman.super.maxhp)
-                .append("\t|\t\t")
-                .append("\t| X.Y: \t").append("(").append(Infantman.super.pos.x)
-                .append(",").append(Infantman.super.pos.y).append(")")
-                .append("\t State: \t").append(Infantman.super.state).append("\n");
+    public String getInfo() {
+        return "Копейщик";
     }
     
 }

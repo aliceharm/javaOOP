@@ -31,7 +31,7 @@ public abstract class Strelok extends Pers{
     }
     
     @Override
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2, ArrayList<Barrier> barriers) {
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
         if (state.equals("Die") || cartrig == 0) return;
         int index = findNearest(team2);
         makeDamage(team2.get(index));
@@ -64,14 +64,8 @@ public abstract class Strelok extends Pers{
 }
 
 @Override
-public StringBuilder getInfo() {
-    StringBuilder builder = new StringBuilder(getProfession());
-    return builder.append(": \t").append(name)
-            .append("\t| ATK:\t").append(attack)
-            .append("\t| HP:\t").append(hp)
-            .append(" \t| Arrows:").append(cartrig)
-            .append("\t|")
-            .append("\t|");
+public String getInfo() {
+        return "";
 }
 @Override
 public String toString() {
@@ -81,7 +75,7 @@ public String toString() {
             "\t\uD83D\uDEE1:" + protect +
             " \t\uD83C\uDFF9:" + attack +
             " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) +
-            " \t\uD83E\uDEA0:" + cartrig;
+            " \t\uD83E\uDEA0:" + cartrig  + "  ";
 }
 
 

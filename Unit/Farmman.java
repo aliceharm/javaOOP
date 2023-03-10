@@ -24,7 +24,7 @@ public class Farmman extends Pers{
         
         
     @Override
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2, ArrayList<Barrier> barriers) {
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
         if (state.equals("Die")) return;
         if (state.equals("Empty")) state = "Stand";
     }
@@ -38,15 +38,8 @@ public class Farmman extends Pers{
 
 
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Фермер: \t").append(Farmman.super.name)
-                .append("\t| HP: \t").append(Farmman.super.hp)
-                .append("\t| MaxHP: \t").append(Farmman.super.maxhp)
-                .append("\t| Arrows: \t").append(Farmman.this.arrows)
-                .append("\t| X.Y: \t").append("(").append(Farmman.super.pos.x)
-                .append(",").append(Farmman.super.pos.y).append(")")
-                .append("\t State: \t").append(Farmman.super.state).append("\n");
+    public String getInfo() {
+        return "Фермер";
     }
     @Override
     public String getProfession() {
