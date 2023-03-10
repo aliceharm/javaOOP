@@ -8,15 +8,15 @@ public class Barrier {
     protected Vector2d pos;
     protected String barrieraEmodji;
 
-    public String getBarrieraEmodji() {
-        return barrieraEmodji;
-    }
-
     public Barrier(Vector2d vector2d) {
 
         this.pos = vector2d;
         this.barrieraEmodji = getEmodjiBarrier();
     }
+    public String getBarrieraEmodji() {
+        return barrieraEmodji;
+    }
+
     protected String getEmodjiBarrier() {
         List<String> strBarrier = Arrays.asList("🗿", "🪵", "🪨");
         return strBarrier.get(new Random().nextInt(3));

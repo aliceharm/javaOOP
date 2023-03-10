@@ -21,7 +21,7 @@ public class Vector2d {
         return opponent.y < y;
     }
 
-    protected boolean getEmpty(ArrayList <Pers> team,ArrayList<Barrier> barriers, int posX, int posY) {
+    protected boolean getEmpty(ArrayList <Pers> team, ArrayList<Barrier> barriers, int posX, int posY) {
         boolean bool = true;
         for (Pers human: team) {
             if (human.pos.x == x & human.pos.y == y) {
@@ -29,12 +29,12 @@ public class Vector2d {
                 break;
             }
         }
-        for (Barrier barr: barriers){
-            if (barr.pos.x == x & barr.pos.y == y) {
-                bool = false;
-                break;
-            }
-        }
+//        for (Barrier barr: barriers){
+//            if (barr.pos.x == x & barr.pos.y == y) {
+//                bool = false;
+//                break;
+//            }
+//        }
         return bool;
     }
     

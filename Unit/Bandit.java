@@ -46,19 +46,8 @@ public class Bandit extends Manman{
         return "\uD83E\uDD77";
     }
 
-   
-
-
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        return builder.append("Бандит: \t").append(Bandit.super.name)
-                .append("\t| HP: \t").append(Bandit.super.hp)
-                .append("\t| MaxHP: \t").append(Bandit.super.maxhp)
-                .append("\t|\t\t")
-                .append("\t| X.Y: \t").append("(").append(Bandit.super.pos.x)
-                .append(",").append(Bandit.super.pos.y).append(")")
-                .append("\t State: \t").append(Bandit.super.state)
-                .append("\n");
+    public String getInfo() {
+      return "Бандит";
     }
 }

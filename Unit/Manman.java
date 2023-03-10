@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public abstract class Manman extends Pers{
 
+    ArrayList<Barrier> barriers;
     public Manman(String name, boolean sex, float hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina) {
         super(name, sex, hp, maxhp, x, y, attack, protect, speed, stamina);
         
     }
     
-    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2, ArrayList<Barrier> barriers) {
+    public void step(ArrayList<Pers> team1, ArrayList<Pers> team2) {
         if (state.equals("Die")) return;
         int index = findNearest(team2);
         Pers enemy = team2.get(index);
@@ -17,6 +18,7 @@ public abstract class Manman extends Pers{
             makeDamage(team2.get(index));
             return;
         }
+
         if (pos.getDown(enemy.pos)) {
             if (pos.y - 1 > enemy.pos.y && pos.getEmpty(team1, barriers, pos.x, pos.y - 1)) {
                 stepDown();
@@ -51,14 +53,17 @@ public abstract class Manman extends Pers{
         }
     }
     @Override
-    public StringBuilder getInfo() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(getProfession());
-        return builder.append(": \t").append(name)
-                .append("\t| ATK:\t").append(attack)
-                .append("\t| HP:\t").append(hp)
-                .append(" \t|\t\t\t|")
-                .append("\t|");
+    public String getInfo() {
+        return "";
     }
+    public String toString() {
+        return name + "\t" +
+                getEmoji() +
+                "\t| \uD83E\uDE78:" + Math.round(hp) +
+                "\t\uD83D\uDEE1:" + protect +
+                " \t\uD83D\uDDE1:" + attack +
+                " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) + "  ";
+    }
+
     
 }

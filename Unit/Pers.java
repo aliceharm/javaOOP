@@ -16,33 +16,28 @@ public abstract class Pers implements Interface {
     public String state;
     
 
-public int getAttack(){
+    public int getAttack(){
 
-        return 0;
-    }
+            return 0;
+        }
 
-public int getHP(){
+    public int getSleep(){
 
-        return 0;
-    }
+            return 5;
+        }
 
-public int getSleep(){
+    public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina) {
+        this.name = name;
+        this.sex = sex;
+        this.hp = hp;
+        this.maxhp = maxhp;
+        pos = new Vector2d(x, y);
 
-        return 5;
-    }
-
-public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int attack, int protect, int speed, int stamina) {
-    this.name = name;
-    this.sex = sex;
-    this.hp = hp;
-    this.maxhp = maxhp;
-    pos = new Vector2d(x, y);
-
-    this.attack = attack;
-    this.protect = protect;
-    this.speed = speed;
-    this.stamina = stamina;
-    this.state = "Stand";
+        this.attack = attack;
+        this.protect = protect;
+        this.speed = speed;
+        this.stamina = stamina;
+        this.state = "Stand";
     }
 
 
@@ -66,7 +61,6 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
         return index;
 
     }
-
 
     public static void createArreyUnit1(ArrayList<Pers> arrayList, ClassesUnits classesUnits, int i){ // Для создания Команды 1 (Список, setClass())
         switch (classesUnits){
@@ -108,18 +102,15 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
         }
     }
 
-  
-   
-
     @Override
-    public StringBuilder getInfo() {
-        return null;
+    public String getInfo() {
+        return "";
     }
 
     public static ArrayList<Pers> findLive(ArrayList<Pers> teams){
         ArrayList<Pers> findLive = new ArrayList<>();
         for (int i = 0; i < teams.size(); i++) {
-            if(teams.get(i).gethp() > 0){
+            if(teams.get(i).getHp() > 0){
                 findLive.add(teams.get(i));
             }
             else{
@@ -133,33 +124,33 @@ public Pers(String name, boolean sex, float hp, int maxhp, int x, int y, int att
         int damage = unit.getprotect() - attack;
         float hp;
         if(damage < 0) {
-            hp = unit.gethp() + damage;
+            hp = unit.getHp() + damage;
         } else if (damage > 0) {
-            hp = unit.gethp() - 1;
+            hp = unit.getHp() - 1;
         } else {
-            hp = unit.gethp() - ((attack+1)/2);
+            hp = unit.getHp() - ((attack+1)/2);
         }
         unit.sethp(hp < 0 ? 0: hp);
-}
-public int getprotect() {
-    return protect;
-}
-public int getMaxhp() {
-    return maxhp;
-}
+    }
+    public int getprotect() {
+        return protect;
+    }
+    public int getMaxhp() {
+        return maxhp;
+    }
 
 
 
-protected void getDamage(float damage) {
-    hp -= damage;
-    if(hp > maxhp) hp = maxhp;
-        if (hp <= 0) state = "Die";
-        }
+    protected void getDamage(float damage) {
+        hp -= damage;
+        if(hp > maxhp) hp = maxhp;
+            if (hp <= 0) state = "Die";
+            }
     
     public int getSpeed() {
         return speed;
     }
-    public float gethp() {
+    public float getHp() {
         return hp;
     }
     public void sethp(float hp) {
@@ -167,18 +158,58 @@ protected void getDamage(float damage) {
     }
 
 
-public int[] getCoords() { return new int[]{pos.x, pos.y};}
-@Override
-public String toString() {
-    return name + "\t" +
-            getEmoji() +
-            "\t| \uD83E\uDE78:" + Math.round(hp) +
-            "\t\uD83D\uDEE1:" + protect +
-            " \t\uD83D\uDDE1:" + attack +
-            " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) +
-            "\t\t";
-}
-public String getEmoji() {
-    return null;
-}
+    public int[] getCoords() { return new int[]{pos.x, pos.y};}
+    @Override
+    public String toString() {
+        return name + "\t" +
+                getEmoji() +
+                "\t| \uD83E\uDE78:" + Math.round(hp) +
+                "\t\uD83D\uDEE1:" + protect +
+                " \t\uD83D\uDDE1:" + attack +
+                " \t\uD83D\uDCA5:" + Math.round(Math.abs((1+attack)/2)) + "  ";
+    }
+    public String getEmoji() {
+        return null;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
+    }
+
+    public void setMaxhp(int maxhp) {
+        this.maxhp = maxhp;
+    }
+
+    public void setPos(Vector2d pos) {
+        this.pos = pos;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setProtect(int protect) {
+        this.protect = protect;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
 }
